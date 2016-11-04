@@ -21,6 +21,16 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
+\bibitem{Weaver:2013sl}
+G.~Weaver, ``{Security-Policy Analysis with eXtended Unix Tools},'' Ph.D.
+  dissertation, Dartmouth College, 2013.
+
+\bibitem{Designs:qm}
+\BIBentryALTinterwordspacing
+S.~Designs, ``{Semantic Designs: Smart Differencer Tool}.'' [Online].
+  Available: \url{http://www.semdesigns.com/Products/SmartDifferencer/}
+\BIBentrySTDinterwordspacing
+
 \bibitem{Bille:2005ec}
 P.~Bille, ``{A Survey on Tree Edit Distance and Related Problems},'' in
   \emph{Theoretical Computer Science}, vol. 337, June 2005, p. unknown.
@@ -36,23 +46,6 @@ G.~Cob\'{e}na \emph{et~al.}, ``{Detecting Changes in XML Documents},'' in
   Engineering}}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, February and
   March 2002, pp. 41--52.
 
-\bibitem{Designs:qm}
-\BIBentryALTinterwordspacing
-S.~Designs, ``{Semantic Designs: Smart Differencer Tool}.'' [Online].
-  Available: \url{http://www.semdesigns.com/Products/SmartDifferencer/}
-\BIBentrySTDinterwordspacing
-
-\bibitem{McCulloch:2015pd}
-P.~McCulloch, ``{THEMA: A Music Notation Software Package with Integrated and
-  Automatic Data Collection},'' in \emph{{Proceedings of The First
-  International Conference on Technologies for Music Notation and
-  Representation}}, 2015.
-
-\bibitem{roland2002music}
-P.~Roland, ``{The Music Encoding Initiative (MEI)},'' in \emph{{Proceedings of
-  the First International Conference on Musical Applications Using XML}}, 2002,
-  pp. 55--59.
-
 \bibitem{Zhang:1989ec}
 K.~Zhang and D.~Shasha, ``{Simple Fast Algorithms for the Editing Distance
   between Trees and Related Problems},'' \emph{Siam Journal of Computing},
@@ -61,6 +54,11 @@ K.~Zhang and D.~Shasha, ``{Simple Fast Algorithms for the Editing Distance
 \bibitem{Zhang:1989il}
 K.~Zhang, ``{The Editing Distance between Trees: Algorithms and
   Applications},'' Ph.D. dissertation, New York University (NYU), 1989.
+
+\bibitem{roland2002music}
+P.~Roland, ``{The Music Encoding Initiative (MEI)},'' in \emph{{Proceedings of
+  the First International Conference on Musical Applications Using XML}}, 2002,
+  pp. 55--59.
 
 \bibitem{wust2001architectural}
 O.~W{\"u}st and S.~Jord{\`a}, ``{Architectural Overview of a System for
@@ -71,5 +69,28 @@ O.~W{\"u}st and S.~Jord{\`a}, ``{Architectural Overview of a System for
 D.~Martin \emph{et~al.}, ``{LeadsheetJS: A Javascript Library for Online Lead
   Sheet Editing},'' in \emph{{Proceedings of The First International Conference
   on Technologies for Music Notation and Representation}}, 2015.
+
+\bibitem{McCulloch:2015pd}
+P.~McCulloch, ``{THEMA: A Music Notation Software Package with Integrated and
+  Automatic Data Collection},'' in \emph{{Proceedings of The First
+  International Conference on Technologies for Music Notation and
+  Representation}}, 2015.
+
+\bibitem{Flat:aa}
+\BIBentryALTinterwordspacing
+Flat, ``flat.io.'' [Online]. Available: \url{flat.io}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Baca:2015xr}
+T.~Ba\v{c}a, J.~Oberholtzer, J.~Trevi\~{n}o, and V.~Ad\'{a}n, ``{Abjad: An
+  Open-source Software System for Formalized Score Control},'' in
+  \emph{{Proceedings of The First International Conference on Technologies for
+  Music Notation and Representation}}, 2015.
+
+\bibitem{Avid:to}
+\BIBentryALTinterwordspacing
+Avid, ``{Sibelius: Features}.'' [Online]. Available:
+  \url{http://www.avid.com/sibelius/features}
+\BIBentrySTDinterwordspacing
 
 \end{thebibliography}

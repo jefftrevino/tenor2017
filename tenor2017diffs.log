@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.8)  4 NOV 2016 12:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.8)  4 NOV 2016 12:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -367,9 +367,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 129--129
  []
 
 
-Overfull \hbox (3.0146pt too wide) in paragraph at lines 175--198
-\OT1/ptm/m/n/10 com-po-si-tion, at dif-fer-ent lev-els of ab-strac-tion as rep-
-re-sented
+Overfull \hbox (3.84558pt too wide) in paragraph at lines 160--174
+\OT1/ptm/m/n/10 one de-fine doc-u-ment sim-i-lar-ity may change de-pend-ing upo
+n
  []
 
 [1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
@@ -377,27 +377,39 @@ re-sented
 
 
 ]
-Overfull \hbox (6.52643pt too wide) in paragraph at lines 209--219
+Overfull \hbox (6.52643pt too wide) in paragraph at lines 213--223
 []\OT1/ptm/m/n/10 Our pro-posed ap-proach lever-ages pre-vi-ous work from other
 
  []
 
 
-Overfull \hbox (6.09557pt too wide) in paragraph at lines 220--227
+Overfull \hbox (6.09557pt too wide) in paragraph at lines 224--231
 []\OT1/ptm/m/n/10 One ben-e-fit of this ap-proach is that prac-ti-tion-ers can 
 choose
  []
 
 
-Overfull \hbox (1.81467pt too wide) in paragraph at lines 229--230
+Overfull \hbox (1.81467pt too wide) in paragraph at lines 233--234
 \OT1/ptm/m/n/10 MEI's tree struc-ture af-fords heirar-chic diff com-par-i-son. 
 \OT1/ptm/m/it/10 this
  []
 
 
-Overfull \hbox (2.13507pt too wide) in paragraph at lines 248--249
+Overfull \hbox (2.13507pt too wide) in paragraph at lines 247--248
 \OT1/ptm/m/n/10 The re-cently emerged po-ten-tials of on-line col-lab-o-ra-tive
  mu-
+ []
+
+
+Overfull \hbox (4.88547pt too wide) in paragraph at lines 247--248
+\OT1/ptm/m/n/10 mu-si-col-ogy, com-po-si-tion, and mu-sic ed-u-ca-tion through 
+doc-
+ []
+
+
+Overfull \hbox (3.13467pt too wide) in paragraph at lines 249--250
+\OT1/ptm/m/n/10 project, an open-source in-ter-face for col-lab-o-ra-tive MEI d
+oc-
  []
 
 (./tenor2017diffs.bbl
@@ -406,35 +418,35 @@ Package balance Warning: You have called \balance in second column
 (balance)                Columns might not be balanced.
 
 [2])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 262.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 261.
  [3]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 262.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 261.
  (./tenor2017diffs.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 262.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 262.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 261.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 261.
 Package rerunfilecheck Info: File `tenor2017diffs.out' has not changed.
-(rerunfilecheck)             Checksum: 121007C7F95DC9324F4B529872B68ACF;775.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 262.
+(rerunfilecheck)             Checksum: 437DA47D18D9D39A33222CE27494A98A;726.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 261.
  )
 (\end occurred when \ifx on line 39 was incomplete) 
 Here is how much of TeX's memory you used:
- 5704 strings out of 493054
- 84437 string characters out of 6134766
- 179902 words of memory out of 5000000
- 9155 multiletter control sequences out of 15000+600000
+ 5711 strings out of 493054
+ 84529 string characters out of 6134766
+ 180032 words of memory out of 5000000
+ 9159 multiletter control sequences out of 15000+600000
  14452 words of font info for 29 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,15n,30p,1054b,457s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 29i,15n,30p,1166b,457s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/tex
 mf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2015/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015/texmf-dist/fonts/typ
 e1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/t
 imes/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmr8
 a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on tenor2017diffs.pdf (3 pages, 79580 bytes).
+Output written on tenor2017diffs.pdf (3 pages, 80750 bytes).
 PDF statistics:
- 114 PDF objects out of 1000 (max. 8388607)
- 102 compressed objects within 2 object streams
- 24 named destinations out of 1000 (max. 500000)
- 81 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 121 PDF objects out of 1000 (max. 8388607)
+ 109 compressed objects within 2 object streams
+ 27 named destinations out of 1000 (max. 500000)
+ 73 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -155,7 +155,9 @@ able to compare those sequences relative to characters, words, or
 lines.  Unfortunately, however, many modern file formats rely on
 hierarchical object models to encode multiple levels of meaning
 (e.g. XML, blocks of code).  As such, different algorithms for
-hierarchical structures become necessary.  Consider the following two
+hierarchical structures become necessary.  
+
+Consider the following two
 problems that result from this mismatch between traditional diff tools
 and their input.  First, comparing documents in terms of low-level
 documents (e.g. lines) may not result in changes that are meaningful
@@ -185,7 +187,9 @@ would be poorly received by the community.  Second, the meaning of
 textually-encoded music always requires additional interpretation.
 Therefore, a one-dimensional sequence of characters (the data
 structure for which traditional diff was designed) will not allow
-musicians to compare two interpretations of music.  Instead, musicians
+musicians to compare two interpretations of music.  
+
+Instead, musicians
 need the ability to compare music and its interpretation which may be
 expressed hierarchically.  Therefore, musicians need the ability to
 compare two versions of hierarchical structures.  Finally, musicians
@@ -199,23 +203,23 @@ compare the portions intended for a given musician or instrument type.
 \section{Applying The Zhang and Shasha Algorithm}
 \subsection{The Zhang and Shasha Algorithm}
 Our initial approach uses Zhang and Shasha's tree edit distance
-algorithm as implemented within the XUDiff tool.  The edit distance
-between two trees is the minimum number of edit operatiosn necessary
-to transform one tree to another.  The edit operations that we
-consider consist of deleting, changing, and appending tree nodes.  As
+algorithm as implemented within the XUDiff tool \cite{Weaver:2013sl}.  The edit distance
+between two trees is the minimum number of edit operations necessary
+to transform one tree to another; the edit operations that we
+consider consist of deleting, changing, and appending tree nodes. As
 before, a sequence of edit operations between two trees is called an
 edit script.
 
 Our proposed approach leverages previous work from other domains both in
 industry and in academia.  Within industry, there are proprietary
 difference engines, such as the SmartDifferencer by Semantic Designs,
-to compare source code in a variety of edit operations [38].  Within
+to compare source code in a variety of edit operations \cite{Designs:qm}.  Within
 academia, the tree diffing problem has been long studied by
-theoretical computer science [9].  Different algorithms such as
+theoretical computer science \cite{Bille:2005ec}.  Different algorithms such as
 subtree hashing and even using IDs to align subtrees before computing
 similarity have been studied by researchers such as Chawathe et
-al. and Cobena et al.[23,30].  We employ the Zhang and Shasha tree
-difference algorithm to solve the edit distance between trees [151].
+al. and Cobena et al. \cite{Chawathe:1996jb,Cobena:2002gd}.  We employ the Zhang and Shasha tree
+difference algorithm to solve the edit distance between trees \cite{Zhang:1989ec,Zhang:1989il}.
 
 One benefit of this approach is that practitioners can choose a preferred level of abstraction (as defined by level within the tree) with
 which to summarize a change and define 'similarity'.  As such, we
@@ -226,7 +230,7 @@ of their meaning as expressed via a hierarchical interpretation of the
 text and thereby reducing noisy comparisons.
 
 \subsection{Suitability of MEI as a Music Representation for Collaborative Editing}
-MEI's tree structure affords heirarchic diff comparison. \emph{this is where we can summarize some of the diffable features of MEI, with examples of the elements' hierarchical structure, such as...} MEI does not entangle an event series representation of musical information (MIDI) with a tree representation, as MusicXML does.
+MEI's tree structure affords heirarchic diff comparison. \emph{this is where we can summarize some of the diffable features of MEI, with examples of the elements' hierarchical structure, such as...} MEI does not entangle an event series representation of musical information (MIDI) with a tree representation, as MusicXML does. \emph{And we should cite some different MEI publications here \cite{roland2002music}}.
 
 %Figure ___ compares the two approaches.  THERE MAY BE A
 %NICE USE FOR A DIAGRAM SIMILAR TO PAGE 51 IN MY THESIS.
@@ -239,15 +243,10 @@ The following example demonstrates the same diff with two algorithms: first, the
 %  What is the related work for this approach in general and
 %  specifically to music composition?
 
-
-
-\section{Citations}
-To distribute: \cite{Bille:2005ec,Chawathe:1996jb,Cobena:2002gd,Designs:qm,McCulloch:2015pd,roland2002music,Zhang:1989ec,Zhang:1989il}
-
 \section{Conclusions}
-The recently emerged potentials of online collaborative music applications illustrate several ways a robust hierarchic diff algorithm for music can enable newly collaborative musicology, composition, and music education \cite{wust2001architectural,Martin:2015pb}. Yet the commercial presentation of widely used digital engraving tools still conflates the act of sharing with act of collaboration, although these remain distinct from one another -- as a recent advertisement for the Sibelius engraving program exhorts, ``Collaborate more easily with others and distribute your compositions for the world to hear. Share scores through email, upload and publish them as sheet music on ScoreExchange.com, and even share your composition as a video or audio file on YouTube, Facebook, and SoundCloud.'' While file exchange between musical authors remains a crucial part of musical creativity, it is time for engraving software to embrace the potentials of genuinely collaborative music document editing interfaces.
+The recently emerged potentials of online collaborative music applications illustrate several ways a robust hierarchic diff algorithm for music can enable newly collaborative musicology, composition, and music education through document utilities\cite{wust2001architectural,Martin:2015pb,McCulloch:2015pd,Flat:aa,Baca:2015xr}. Yet the commercial presentation of widely used digital engraving tools still conflates the act of sharing with act of collaboration, although these remain distinct from one another -- as a recent advertisement for the Sibelius engraving program exhorts, ``Collaborate more easily with others and distribute your compositions for the world to hear. Share scores through email, upload and publish them as sheet music on ScoreExchange.com, and even share your composition as a video or audio file on YouTube, Facebook, and SoundCloud'' \cite{Avid:to}. While file exchange between musical authors remains a crucial part of musical creativity and collaboration beyond notation, it is time for engraving software to embrace the potentials of genuinely collaborative music document editing interfaces. 
 
-In this light, the widespread publication and adoption of an effective hierarchic diff algorithm for collaborative music document editing may have a potentially far-reaching impact on many music document contexts, as it can . To explore these potential applications, the authors will continue to implement the described algorithm as part of the nCoda project, an open-source interface for collaborative MEI document editing. The algorithm's integration into this project also invites the design of novel graphical user interfaces and diff representation that may take into account the user's music literacy.
+To explore these potential applications, the authors will implement the described algorithm as part of the nCoda project, an open-source interface for collaborative MEI document editing. The algorithm's integration into this project also invites the design of novel graphical user interfaces and diff representation that may take into account the user's music literacy.
 
 %
 \begin{acknowledgments}
