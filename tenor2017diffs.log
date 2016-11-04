@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.8)  4 NOV 2016 02:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.8)  4 NOV 2016 12:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -394,41 +394,47 @@ Overfull \hbox (1.81467pt too wide) in paragraph at lines 229--230
 \OT1/ptm/m/it/10 this
  []
 
-(./tenor2017diffs.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 262.
 
+Overfull \hbox (2.13507pt too wide) in paragraph at lines 248--249
+\OT1/ptm/m/n/10 The re-cently emerged po-ten-tials of on-line col-lab-o-ra-tive
+ mu-
+ []
+
+(./tenor2017diffs.bbl
 
 Package balance Warning: You have called \balance in second column
 (balance)                Columns might not be balanced.
 
-[2]
+[2])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 262.
+ [3]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 262.
  (./tenor2017diffs.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 262.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 262.
 Package rerunfilecheck Info: File `tenor2017diffs.out' has not changed.
-(rerunfilecheck)             Checksum: 00963B953A802E91BCED04CB339C6792;761.
+(rerunfilecheck)             Checksum: 121007C7F95DC9324F4B529872B68ACF;775.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 262.
  )
 (\end occurred when \ifx on line 39 was incomplete) 
 Here is how much of TeX's memory you used:
- 5700 strings out of 493054
- 84374 string characters out of 6134766
- 178858 words of memory out of 5000000
- 9153 multiletter control sequences out of 15000+600000
+ 5704 strings out of 493054
+ 84437 string characters out of 6134766
+ 179902 words of memory out of 5000000
+ 9155 multiletter control sequences out of 15000+600000
  14452 words of font info for 29 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,15n,30p,756b,360s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 29i,15n,30p,1054b,457s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/tex
 mf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2015/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015/texmf-dist/fonts/typ
 e1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/t
 imes/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmr8
 a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on tenor2017diffs.pdf (2 pages, 78400 bytes).
+Output written on tenor2017diffs.pdf (3 pages, 79580 bytes).
 PDF statistics:
- 107 PDF objects out of 1000 (max. 8388607)
- 97 compressed objects within 1 object stream
- 22 named destinations out of 1000 (max. 500000)
+ 114 PDF objects out of 1000 (max. 8388607)
+ 102 compressed objects within 2 object streams
+ 24 named destinations out of 1000 (max. 500000)
  81 words of extra memory for PDF output out of 10000 (max. 10000000)
 
