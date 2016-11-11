@@ -9,6 +9,7 @@
 \usepackage{ifpdf}
 \usepackage[english]{babel}
 \usepackage{balance}
+\usepackage{courier}
 
 %%%%%%%%%%%%%%%%%%%%%%%% Some useful packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%% See related documentation %%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -129,10 +130,9 @@
 \capstarttrue
 %
 \begin{abstract}
-We describe an initial approach to hierarchic diff for collaborative music document editing of tree-based music representations, using Zhang and Shasha's tree edit distance
-algorithm as implemented within the XUDiff tool.  The edit distance
-between two trees is the minimum number of edit operations necessary
-to transform one tree into another.  We consider common operations on the score tree -- deleting, changing, and appending tree nodes -- to derive a minimal edit sequence, known as an edit script.
+We describe an application of hierarchic diff to the collaborative editing of tree-based music representations, using Zhang and Shasha's tree edit distance
+algorithm, as implemented within the XUDiff tool: the edit distance between two trees is the minimum number of edit operations necessary
+to transform one tree into another.  We consider common operations on the score tree -- deleting, changing, and appending tree nodes -- to derive a minimal edit sequence, known as an edit script, and we benchmark the widely used Longest Common Substring algorithm against our approach to demonstrate its superior performance.
 \end{abstract}
 %
 
@@ -229,19 +229,99 @@ address the problems mentioned above: comparing compositions in terms
 of their meaning as expressed via a hierarchical interpretation of the
 text and thereby reducing noisy comparisons.
 
-\subsection{Suitability of MEI as a Music Representation for Collaborative Editing}
-MEI's tree structure affords heirarchic diff comparison. \emph{this is where we can summarize some of the diffable features of MEI, with examples of the elements' hierarchical structure, such as...} MEI does not entangle an event series representation of musical information (MIDI) with a tree representation, as MusicXML does. \emph{And we should cite some different MEI publications here \cite{roland2002music}}.
-
 %Figure ___ compares the two approaches.  THERE MAY BE A
 %NICE USE FOR A DIAGRAM SIMILAR TO PAGE 51 IN MY THESIS.
  
 
 \subsection{A Comparative Example}
-The following example demonstrates the same diff with two algorithms: first, the noisy, Least Common Subsequence algorithm, and then with the proposed hierarchic diff algorithm. \emph{(Narrate example in detail with diagrams of both algorithms here.)}
+Consider the case of a simple edit: the exchange of a staff's two voices -- that is, the upward-facing stems of voice one become the downward-facing stems of voice one, and vice versa (see figure 1). 
+
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=0.8\columnwidth]{layers.png}
+\caption{The figure above illustrates an edit that swaps the first and second voices in a staff. In common western notation, only stem direction reflects the change.}
+\label{fig:example}
+\end{figure}
+
+While common western notation displays only a change of stem direction, a tree-based, hierarchic representation of this musical information must alter both the labeling and succession of elements: for example, in the widely used MEI XML representation of a music document, this initial representation,
+
+\break
+
+\begin{verbatim}
+<staff n="1"> 
+    <layer n="1">
+        <note pname="a"/>
+        <note pname="b"/>
+        <note pname="c"/>
+    </layer>
+    <layer n="2">
+        <note pname="e"/>
+        <note pname="f"/>
+        <note pname="g"/>
+    </layer>
+</staff>
+\end{verbatim}
+
+\noindent becomes, after the edit described,
+
+\begin{verbatim}
+<staff n="1">
+    <layer n="1">
+        <note pname="e"/>
+        <note pname="f"/>
+        <note pname="g"/>
+    </layer>
+    <layer n="2">
+        <note pname="a"/>
+        <note pname="b"/>
+        <note pname="c"/>
+    </layer>
+</staff>
+\end{verbatim}
+
+\subsection{Benchmarking LCM against Zhang and Shasha}
+How should a diff algorithm represent the described edit? The LCM algorithm yields a substantially different result from the Zhang and Shasha Algorithm. The Least Common Subsequence algorithm's line-based comparison yields a hierarchy-unaware diff with an edit distance of 10, half of which can be attributed to "noise" caused by the deletion of the layer element tags (see Figure 1). The Zhang and Shasha algorithm, on the other hand, reports an edit distance of 6 (3 for each layer) and can aggregate costs across the MEI hierarchy (see Figure 2).
+
+\begin{figure*}[!htb]
+\centering
+\includegraphics[width=\textwidth]{figure1.pdf}
+\caption{The figure above illustrates the output of \texttt{diff} applied to MEI. A total edit distance of 10 results from updating the notes in layers 1 and 2 (cost of 6), as well as updating \texttt{layer} tags (cost of 4). "Noise" from layer tag deletion -- an artifact of line-based comparison rather than MEI element-based comparison -- makes up nearly half of the edit distance. }
+\label{fig:example}
+\end{figure*}
+
+\begin{figure*}[!htb]
+\centering
+\includegraphics[width=\textwidth]{figure2.pdf}
+\caption{The figure above illustrates the output of \texttt{xudiff} applied to MEI. A total edit distance of 6 results from updating the notes in layers 1 and 2. \texttt{xudiff} aggregates total costs across MEI's hierarchical structure: 3 for each layer and 6 for the staff.}
+\label{fig:example}
+\end{figure*}
 
 % Jeffrey, please see p. 121 of my thesis for citations
 %  What is the related work for this approach in general and
 %  specifically to music composition?
+
+%\noindent Here is how monospaced example code will look:
+
+%\begin{comment}
+%from abjad import *
+
+%def make_nested_tuplet(
+ %   tuplet_duration,
+   % outer_tuplet_proportions,
+ %   inner_tuplet_subdivision_count,
+  %  ):
+  %  outer_tuplet = Tuplet.from_duration_and_ratio(
+      %  tuplet_duration, outer_tuplet_proportions)
+  %  inner_tuplet_proportions = \
+  %      inner_tuplet_subdivision_count * [1]
+ %   last_leaf = outer_tuplet.select_leaves()[-1]
+ %   inspector = inspect_(last_leaf)
+  %  right_logical_tie = inspector.get_logical_tie()
+ %   right_logical_tie.to_tuplet(inner_tuplet_proportions)
+  %  return outer_tuplet
+%\end{comment}
+
 
 \section{Conclusions}
 The recently emerged potentials of online collaborative music applications illustrate several ways a robust hierarchic diff algorithm for music can enable newly collaborative musicology, composition, and music education through document utilities\cite{wust2001architectural,Martin:2015pb,McCulloch:2015pd,Flat:aa,Baca:2015xr}. Yet the commercial presentation of widely used digital engraving tools still conflates the act of sharing with act of collaboration, although these remain distinct from one another -- as a recent advertisement for the Sibelius engraving program exhorts, ``Collaborate more easily with others and distribute your compositions for the world to hear. Share scores through email, upload and publish them as sheet music on ScoreExchange.com, and even share your composition as a video or audio file on YouTube, Facebook, and SoundCloud'' \cite{Avid:to}. While file exchange between musical authors remains a crucial part of musical creativity and collaboration beyond notation, it is time for engraving software to embrace the potentials of genuinely collaborative music document editing interfaces. 
@@ -256,6 +336,7 @@ Research conducted toward the nCoda project has been supported by Colorado Colle
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %bibliography here
 \balance
+\clearpage
 \bibliography{tenor2017diffs}
 
 \end{document}
