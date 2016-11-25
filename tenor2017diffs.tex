@@ -145,24 +145,31 @@
 \capstarttrue
 %
 \begin{abstract}
-We describe an application of hierarchic diff to the collaborative editing of tree-based music representations,
-using Zhang and Shasha's tree edit distance algorithm as implemented within the XUDiff tool.
-The edit distance between two trees is the minimum number of edit operations necessary to transform one tree into the other.
-We consider common operations on the score tree---deleting, changing, and appending tree nodes----to derive a minimal edit sequence,
-known as an edit script, and we compare the performance of the widely used Longest Common Subsequence algorithm against our approach.
+We describe an application of hierarchic diff to the collaborative
+editing of tree-based music representations, using Zhang and Shasha's
+tree edit distance algorithm as implemented within the XUDiff tool.
+The edit distance between two trees is the minimum number of edit
+operations necessary to transform one tree into the other.  We
+consider common operations on the score tree---deleting, changing, and
+appending tree nodes----to derive a minimal edit sequence, known as an
+edit script, and we compare the performance of the widely used Longest
+Common Subsequence algorithm against our approach.
 \end{abstract}
 %
 
 \section{Introduction}\label{sec:introduction}
 \subsection{The Longest Common Subsequence Algorithm as Default Diff}
-Traditional document comparison algorithms, such as in the Unix \texttt{diff} program,
-take two sequences of characters as input, and output an edit script to transform one sequence into the other.
-An \emph{edit script} consists of a sequence of edit operations (usually insert, delete, and update)
-to transform the first sequence relative to some entity---usually characters, words, or lines.
-The \emph{edit distance} is the minimum cost the edit script gives for each operation.
-The Longest Common Subsequence algorithm and its variants are the most common for computing an edit script and cost.
+Traditional document comparison algorithms, such as in the Unix
+\texttt{diff} program, take two sequences of characters as input, and
+output an edit script to transform one sequence into the other.  An
+\emph{edit script} consists of a sequence of edit operations (usually
+insert, delete, and update) to transform the first sequence relative
+to some entity---usually characters, words, or lines.  The \emph{edit
+  distance} is the minimum cost the edit script gives for each
+operation.  The Longest Common Subsequence algorithm and its variants
+are the most common for computing an edit script and cost.
 
-The Least Common Subsequence algorithm works well in situations where
+The Longest Common Subsequence algorithm works well in situations where
 the inputs are sequences of characters and one wants to be
 able to compare those sequences relative to characters, words, or
 lines, but many modern file formats rely on
@@ -171,19 +178,19 @@ hierarchical object models to encode multiple levels of meaning
 hierarchical structures become necessary.  
 
 Consider the following two problems that result from this mismatch
-between character- or line-based diff tools and tree-structured input.  First, comparing
-documents in terms of low-level documents (e.g. lines) may not result
-in changes that are meaningful to the domain, because lines are often an
-artifact of presentation: for example, one can generate 'noisy diffs'
-by just changing whitespace.  Second, the manner in which one defines
-document similarity may change depending upon the task at hand.  A
-poet may get along fine comparing texts in terms of lines, which
-reflect part of the structure of the text.  A musician, however, may
-want to compare documents in terms of additional information that is
-lost from a purely line-based approach.  A similar demand is seen
-within other communities; scholars may want to analyze and compare
-texts relative to other structures, such as paragraphs or sections.
-
+between character- or line-based diff tools and tree-structured input.
+First, comparing documents in terms of low-level entities
+(e.g. lines) may not result in changes that are meaningful to the
+domain, because lines are often an artifact of presentation: for
+example, one can generate 'noisy diffs' by just changing whitespace.
+Second, the manner in which one defines document similarity may change
+depending upon the task at hand.  A poet may get along fine comparing
+texts in terms of lines, which reflect part of the structure of the
+text.  A musician, however, may want to compare documents in terms of
+additional information that is lost from a purely line-based approach.
+A similar demand is seen within other communities; scholars may want
+to analyze and compare texts relative to other structures, such as
+paragraphs or sections.
 
 \subsection{Collaborative Music Information Requires a Hierarchic Diff}
 As alluded to above, these problems are of specific importance to
@@ -201,29 +208,35 @@ Therefore, a one-dimensional sequence of characters (the data
 structure for which traditional diff was designed) will not allow
 musicians to compare two interpretations of music.  
 
-Instead, musicians need the ability to compare musical information in the presence of its 
-semantic organization, which must be expressed hierarchically.  Therefore,
-musicians need the ability to compare two versions of a hierarchical
-structure.  Finally, musicians may want to compare two versions of a
-score at different levels of abstraction, as represented by
-these hierarchical structures, or restrict comparison to entities with
-certain properties: for example, a musician may want to compare two
-versions of a score in terms of pitch class alone, or of
-higher-level features like phrase structure. Moreover, a musician may
-want to filter a score to compare two versions of only a single 
-instrument's staff within a score, and other musical abstractions that require 
-an algorithm to filter the score's hierarchical representation.
+Instead, musicians need the ability to compare musical information in
+the presence of its logical organization, which must be expressed
+hierarchically.  Therefore, musicians need the ability to compare two
+versions of a hierarchical structure.  Finally, musicians may want to
+compare two versions of a score at different levels of abstraction, as
+represented by these hierarchical structures, or restrict comparison
+to entities with certain properties: for example, a musician may want
+to compare two versions of a score in terms of pitch class alone, or
+of higher-level features like phrase structure. Moreover, a musician
+may want to filter a score to compare two versions of only a single
+instrument's staff within a score, and other musical abstractions that
+require an algorithm to filter the score's hierarchical
+representation.
 
 \subsection{Precedents in the Music Literature}
-I need to spend time tracking down a few examples of published, collaborative systems based on XML. My guess is that there's no diff, let alone hierarchic diff.
+I need to spend time tracking down a few examples of published,
+collaborative systems based on XML. My guess is that there's no diff,
+let alone hierarchic diff.
 
 
 \section{Applying The Zhang and Shasha Algorithm}
 \subsection{The Zhang and Shasha Algorithm}
-Our initial approach uses Zhang and Shasha's tree edit distance algorithm as implemented within the \texttt{XUDiff} tool \cite{Weaver:2013sl}.
-The edit distance between two trees is the minimum number of edit operations necessary to transform one tree to another.
-The edit operations we consider include deletion, change, and appending of tree nodes.
-As before, a sequence of edit operations between two trees is called an \emph{edit script}.
+Our initial approach uses Zhang and Shasha's tree edit distance
+algorithm as implemented within the \texttt{XUDiff} tool
+\cite{Weaver:2013sl}.  The edit distance between two trees is the
+minimum number of edit operations necessary to transform one tree to
+another.  The edit operations we consider include deletion, change,
+and appending of tree nodes.  As before, a sequence of edit operations
+between two trees is called an \emph{edit script}.
 
 Our proposed approach leverages previous work from other domains in both
 industry and in academia.  Within industry, there are proprietary,
@@ -238,14 +251,37 @@ computation \cite{Chawathe:1996jb,Cobena:2002gd}.  We employ the Zhang
 and Shasha tree difference algorithm to solve the edit distance between
 trees \cite{Zhang:1989ec,Zhang:1989il}.
 
+There are several benefits to the Zhang and Shasha tree edit
+difference algorithm.  First, the algorithm produces a tree edit
+distance that is a metric if the cost function is also a metric.  A
+distance metric is desirable because collaborators can use it to
+explore the similarity of an entire corpus of musical scores---rather
+than just two scores---because the metric's notion of distance aligns
+with our intuition about distance in the physical world.  Second, the
+algorithm is relatively simple and as such, lends itself to a
+straightforward implementation that can be maintained by an
+open-source community.  The intent of the open-source community is to
+support an extensible framework for hierarchical comparision of a wide
+variety of document types across a number of domains.  In the future,
+other algorithms, such as those mentioned above, may be implemented to
+understand more about the effect of different tree-edit distance
+algorithms on similarity results.
+
+(Idea for Jeffery and Christopher:  Perhaps insert citations from the research space of topology
+of musical data.  Also, we could discuss the practical benefits of
+this approach (hierarchcial diffing) as well as the benefit to
+collaborative composition as this would allow people to understand how
+and in what manner their music differs from a whole corpus of pieces
+and simultaneously enable research in topological spaces for musical objects.)
+
 One benefit of this approach is that practitioners can choose a
 preferred level of abstraction (as defined by level within the tree)
 with which to summarize a change and define 'similarity'.  As such, we
 hypothesize that XUDiff, when applied to interpretations of music as
 hierarchically encoded by the MEI object model, will be able to
 address the problems mentioned above: comparing score changes in terms
-of their semantic organization, via the algorithm's hierarchical interpretation of the
-text, which yields less noisy comparisons.
+of their semantic organization, via the algorithm's hierarchical
+interpretation of the text, which yields less noisy comparisons.
 
 \begin{figure}[!htb]
 \centering
@@ -256,12 +292,15 @@ text, which yields less noisy comparisons.
 
 \subsection{A Comparative Example}
 Consider the case of a simple edit: exchanging a staff's two voices.
-That is,  as shown in Figure~\ref{fig:voice_swap}, the upward-facing stems of voice one become the downward-facing stems of voice two, and vice versa.
+That is, as shown in Figure~\ref{fig:voice_swap}, the upward-facing
+stems of voice one become the downward-facing stems of voice two, and
+vice versa.
 
-While Common Western Notation displays only a change of stem direction,
-a tree-based, hierarchic representation of this musical information must alter both the labeling and succession of elements.
-In the MEI XML representation of a music document,
-the voice-switch example may be encoded in the following way:
+While Common Western Notation displays only a change of stem
+direction, a tree-based, hierarchic representation of this musical
+information must alter both the labeling and succession of elements.
+In the MEI XML representation of a music document, the voice-switch
+example may be encoded in the following way:
 
 
 \begin{verbatim}
