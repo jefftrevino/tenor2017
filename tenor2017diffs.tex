@@ -163,7 +163,7 @@ In distributed, collaborative document creation, multiple editing agents may cha
 
 \subsection{The Longest Common Subsequence Algorithm as Default Diff}
 Traditional document comparison algorithms, such as in the Unix
-\texttt{diff} program, take two sequences of characters as input, and
+\texttt{diff} program, take two sequences of characters as input and
 output an edit script to transform one sequence into the other.  An
 \emph{edit script} consists of a sequence of edit operations (usually
 insert, delete, and update) to transform the first sequence relative
@@ -173,8 +173,7 @@ operation.  The \emph{Longest Common Subsequence algorithm} and its variants
 are the most common for computing an edit script and cost.
 
 The Longest Common Subsequence algorithm works well in situations where
-the inputs are sequences of characters and one wants to be
-able to compare those sequences relative to characters, words, or
+the inputs are sequences of characters and one needs to compare those sequences relative to characters, words, or
 lines, but many modern file formats rely on
 hierarchical object models to encode multiple levels of meaning
 (e.g. XML, blocks of code).  As such, different algorithms for
@@ -190,8 +189,8 @@ Second, the manner in which one defines document similarity may change
 depending upon the task at hand.  A poet may get along fine comparing
 texts in terms of lines, which reflect part of the structure of the
 text.  A musician, however, may want to compare documents in terms of
-additional information that is lost from a purely line-based approach.
-A similar demand is seen within other communities; scholars may want
+additional information that a line-based approach discards.
+Other communities present similar demands: scholars may want
 to analyze and compare texts relative to other structures, such as
 paragraphs or sections.
 
@@ -205,15 +204,14 @@ they require, the low adoption rate of computer-driven music analytic
 tools, and the general lack of comfort among music scholars and artists with these
 tools, suggest that a program producing diffs of meaningless changes
 would be poorly received by the community.  Second, the meaning of
-textually encoded music always requires additional interpretation.
-Therefore, a one-dimensional sequence of characters (the data
-structure for which LCM diff was designed) will not allow
+textually encoded music always requires additional interpretation, and a one-dimensional sequence of characters (the data
+structure for which LCS diff was designed) will not allow
 musicians to compare two different interpretations of the same musical information.  
 
 Instead, musicians need the ability to compare musical information in
 the presence of its logical organization, which must be expressed
 hierarchically.  Therefore, musicians need the ability to compare two
-versions of a hierarchical structure.  Finally, musicians may want to
+versions of a hierarchical structure. Musicians may also want to
 compare two versions of a score at different levels of abstraction, as
 represented by these hierarchical structures, or restrict comparison
 to entities with certain properties: for example, a musician may want
@@ -242,11 +240,10 @@ While this topic has been approached rigorously in the computer science literatu
 \section{Applying The Zhang and Shasha Algorithm}
 \subsection{The Zhang and Shasha Algorithm}
 Our initial approach uses Zhang and Shasha's tree edit distance
-algorithm as implemented within the \texttt{XUDiff} tool
+algorithm, as implemented within the \texttt{XUDiff} tool
 \cite{Weaver:2013sl}.  The edit distance between two trees is the
 minimum number of edit operations necessary to transform one tree into
-another.  The edit operations we consider include deletion, change,
-and appending of tree nodes.  As before, a sequence of edit operations
+another.  The edit operations we consider include deleting, changing, and appending tree nodes.  As before, a sequence of edit operations
 between two trees is called an \emph{edit script}.
 
 
@@ -322,8 +319,8 @@ After the voice swap, the encoding becomes:
 
 \subsection{Diff Computation Performance Comparison}
 This example, although basic, motivates the need to to compare representations of music in terms of 
-hierarchical structure, rather than line-by-line. Figure~\ref{fig:lcs-diff} illustrates an edit script that maps one
-version of the above MEI-encoded score into another in terms of lines (LCS algorithm).
+hierarchical structure, rather than lines or characters. Figure~\ref{fig:lcs-diff} illustrates an edit script that maps one
+version of the above MEI-encoded score to another in terms of lines (LCS algorithm).
 The line-based approach successfully captures the need to exchange the
 notes between layers; however, the algorithm adds additional noise,
 because \code{diff} compares the MEI rather than the hierarchical
@@ -357,14 +354,13 @@ the hierarchical structure of the MEI text.}
 \end{figure}
 
 In contrast, Figure~\ref{fig:hierarchical-diff} illustrates an edit
-script that maps one version of the above MEI-encoded score into another
+script that maps one version of the above MEI-encoded score to another
 in terms of MEI's hierarchical object model (Zhang and Shasha algorithm).  As with the LCS
 algorithm, the tree-based approach successfully captures the need to
 exchange the notes between layers; however, unlike the LCS algorithm, the edit distance between individual subtrees has also been
 summarized.  This can be helpful for interpretation, as subtrees closer
-to the root represent higher-level constructs within MEI, like voices and staves.  
-As such, practitioners can interpret the comparison of the music at multiple levels 
-of abstraction ranging from low-level notes (six \code{notes}, each with an edit cost of 1) 
+to the root represent higher-level constructs within MEI, and practitioners can interpret the comparison of the music at multiple levels 
+of abstraction, ranging from low-level notes (six \code{notes}, each with an edit cost of 1) 
 to higher-level layers (two \code{layers}, each with an edit cost of 3) and staves (one \code{staff}, 
 with an edit cost of 6). Most notably, the tree-based element-by-element comparison reduces the edit distance to almost half of that of the LCS algorithm: the edit distance has been reduced to 6, from LCS's 10, most of which was noise from deleting lines with `layer' tags (an artifact of line-based comparison).
 
