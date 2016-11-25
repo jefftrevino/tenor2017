@@ -158,7 +158,7 @@ Common Subsequence algorithm against our approach. We conclude by summarizing im
 %
 
 \section{Introduction}\label{sec:introduction}
-\subsection{Collaborative Document Creation Requires Diff}
+\subsection{Collaborative Document Creation Requires Diff Algorithms}
 In distributed, collaborative document creation, multiple editing agents may change the same original information simultaneously, in complex and overlapping ways. To allow users to resolve conflicting edits and to create a reliable and transparent edit history, robust systems for collaborative editing often depend on \emph{Centralized Version Control Systems} (also known as \emph{Revision Control Systems (RCS)} and \emph{Source Code Management (SCM)} systems). These systems maintain a centralized information representation (\emph{repository}) and a history of users' changes to it; the difference between two edited versions of the information is known as a \emph{diff}, and this difference can be calculated and represented in various ways. Distributed, collaborative music document editing presents unique challenges for the implementation of version control systems, and especially for the implementation of a diff algorithm.
 
 \subsection{The Longest Common Subsequence Algorithm as Default Diff}
@@ -169,7 +169,7 @@ output an edit script to transform one sequence into the other.  An
 insert, delete, and update) to transform the first sequence relative
 to some entity---usually characters, words, or lines.  The \emph{edit
   distance} is the minimum cost the edit script gives for each
-operation.  The Longest Common Subsequence algorithm and its variants
+operation.  The \emph{Longest Common Subsequence algorithm} and its variants
 are the most common for computing an edit script and cost.
 
 The Longest Common Subsequence algorithm works well in situations where
@@ -185,7 +185,7 @@ between character- or line-based diff tools and tree-structured input.
 First, comparing documents in terms of low-level entities
 (e.g. lines) may not result in changes that are meaningful to the
 domain, because lines are often an artifact of presentation: for
-example, one can generate 'noisy diffs' by just changing whitespace.
+example, one can generate `noisy diffs' by just changing whitespace.
 Second, the manner in which one defines document similarity may change
 depending upon the task at hand.  A poet may get along fine comparing
 texts in terms of lines, which reflect part of the structure of the
@@ -196,20 +196,19 @@ to analyze and compare texts relative to other structures, such as
 paragraphs or sections.
 
 \subsection{Collaborative Music Information Requires a Hierarchic Diff}
-As alluded to above, these problems are of specific importance to
-those in music, both in terms of usability as well as how one may want
-to define 'meaning' and 'similarity' among musical documents.  First,
-the 'noisy diff' problem---in reporting differences that are not
+As alluded to above, these problems are of specific importance to version control for collaborative music document editing, both in terms of usability as well as how one may want
+to define `meaning' and `similarity' in musical information.  First,
+the `noisy diff' problem---in reporting differences that are not
 relevant to musicians---creates a usability problem.  Although
 programmers have become accustomed to noisy diffs and the work-arounds
 they require, the low adoption rate of computer-driven music analytic
-tools, and the general lack of comfort among music scholars with these
+tools, and the general lack of comfort among music scholars and artists with these
 tools, suggest that a program producing diffs of meaningless changes
 would be poorly received by the community.  Second, the meaning of
 textually encoded music always requires additional interpretation.
 Therefore, a one-dimensional sequence of characters (the data
-structure for which traditional diff was designed) will not allow
-musicians to compare two interpretations of music.  
+structure for which LCM diff was designed) will not allow
+musicians to compare two different interpretations of the same musical information.  
 
 Instead, musicians need the ability to compare musical information in
 the presence of its logical organization, which must be expressed
@@ -221,25 +220,10 @@ to entities with certain properties: for example, a musician may want
 to compare two versions of a score in terms of pitch class alone, or
 of higher-level features like phrase structure. Moreover, a musician
 may want to filter a score to compare two versions of only a single
-instrument's staff within a score, and other musical abstractions that
-require an algorithm to filter the score's hierarchical
-representation.
+instrument's staff, or other musical abstractions. For any of this to be possible, diff algorithms must compare edits to tree-based document elements, rather than document lines or characters.
 
-\subsection{Precedents in the Music Literature}
-While this topic has been approached rigorously in the computer science literature, few relevant precedents exist in the music literature. Almost all software systems for music document creation assume a single user, and collaborative music document creation exists largely as an experimental pursuit. Precedents fall largely into the category of systems for experimental music and for interdisciplinary artistic collaboration. Within these experimental systems, version control for distributed workflows has been addressed only implicitly. For example, although W\"{u}st and Jord\'{a} track versions in a recursively nested tree-based structure, in which each successive edit becomes a child node of the version edited, they do not describe algorithms or interfaces for comparing or traversing this version tree \cite{wust2001architectural}. Likewise, other systems describe distributed collaboration interfaces without addressing the interaction of data representation and version comparison \cite{Balachandran:2012cr,Hepting2005}.
-
-
-\section{Applying The Zhang and Shasha Algorithm}
-\subsection{The Zhang and Shasha Algorithm}
-Our initial approach uses Zhang and Shasha's tree edit distance
-algorithm as implemented within the \texttt{XUDiff} tool
-\cite{Weaver:2013sl}.  The edit distance between two trees is the
-minimum number of edit operations necessary to transform one tree to
-another.  The edit operations we consider include deletion, change,
-and appending of tree nodes.  As before, a sequence of edit operations
-between two trees is called an \emph{edit script}.
-
-Our proposed approach leverages previous work from other domains in both
+\subsection{Relevant Precedents in the Music and Computer Science Literatures}
+From the perspective of computer science, our proposed approach leverages previous work from other domains in both
 industry and in academia.  Within industry, there are proprietary,
 hierarchy-aware difference engines that compare source code in a variety of 
 edit operations, such as the SmartDifferencer by Semantic Designs
@@ -252,12 +236,27 @@ computation \cite{Chawathe:1996jb,Cobena:2002gd}.  We employ the Zhang
 and Shasha tree difference algorithm to solve the edit distance between
 trees \cite{Zhang:1989ec,Zhang:1989il}.
 
+While this topic has been approached rigorously in the computer science literature, few relevant precedents exist in the music literature. Almost all software systems for music document creation assume a single user, and collaborative music document creation exists largely as an experimental pursuit. Precedents fall largely into the category of systems for experimental music and interdisciplinary artistic collaboration. Within these experimental systems, version control for distributed workflows has been addressed only implicitly. For example, although W\"{u}st and Jord\'{a} track versions in a recursively nested, tree-based structure, in which each successive edit becomes a child node of the version edited, they do not describe algorithms or interfaces for calculating edit distances on this version tree \cite{wust2001architectural}. Likewise, other systems describe distributed collaboration interfaces without addressing the interaction of data representation and version comparison \cite{Balachandran:2012cr,Hepting2005}.
+
+
+\section{Applying The Zhang and Shasha Algorithm}
+\subsection{The Zhang and Shasha Algorithm}
+Our initial approach uses Zhang and Shasha's tree edit distance
+algorithm as implemented within the \texttt{XUDiff} tool
+\cite{Weaver:2013sl}.  The edit distance between two trees is the
+minimum number of edit operations necessary to transform one tree into
+another.  The edit operations we consider include deletion, change,
+and appending of tree nodes.  As before, a sequence of edit operations
+between two trees is called an \emph{edit script}.
+
+
+
 There are several benefits to the Zhang and Shasha tree edit
 difference algorithm.  First, the algorithm produces a tree edit
 distance that can function flexibly as a metric (assuming the cost function is also a metric). For example, collaborators
 can use distance metrics to explore the similarity of an entire corpus of 
 musical scores---rather than just two scores---because the metric's notion of distance aligns
-with our intuition about distance in the physical world. The distance metaphor allows designers to leverage existing research in topological feature similarity metrics, which expands the algorithm's utility beyond the notion of hierarchic diff, into new applications such as automated recommendations based on similarity measures \cite{bello2011measuring,berenzweig2004large,panagakis2010music}. Second, the
+with our intuition about distance in the physical world. This distance metaphor allows designers to leverage existing musical research in topological feature similarity metrics, which expands the algorithm's utility beyond the notion of hierarchic diff, into new applications such as automated recommendations based on similarity measures \cite{bello2011measuring,berenzweig2004large,panagakis2010music}. Second, the
 algorithm is relatively simple and lends itself to a
 straightforward implementation that can be maintained by an
 open-source community.  The intent of the open-source community is to
@@ -266,15 +265,6 @@ variety of document types across a number of domains.  In the future,
 other algorithms, such as those mentioned above, may be implemented to
 understand more about the effect of different tree-edit distance
 algorithms on similarity results.
-
-One benefit of this approach is that practitioners can choose a
-preferred level of abstraction (as defined by level within the tree)
-with which to summarize a change and define 'similarity'.  As such, we
-hypothesize that XUDiff, when applied to interpretations of music as
-hierarchically encoded by the MEI object model, will be able to
-address the problems mentioned above: comparing score changes in terms
-of their semantic organization, via the algorithm's hierarchical
-interpretation of the text, which yields less noisy comparisons.
 
 \begin{figure}[!htb]
 \centering
@@ -331,11 +321,11 @@ After the voice swap, the encoding becomes:
 
 
 \subsection{Diff Computation Performance Comparison}
-This example, although basic, motivates the need to to compare representations of music in terms of its 
+This example, although basic, motivates the need to to compare representations of music in terms of 
 hierarchical structure, rather than line-by-line. Figure~\ref{fig:lcs-diff} illustrates an edit script that maps one
-version of an MEI-encoded score to another in terms of lines.
-The line-based approach successfully captures the need to switch the
-notes in layer 1 and layer 2, however additional noise is added
+version of the above MEI-encoded score into another in terms of lines (LCS algorithm).
+The line-based approach successfully captures the need to exchange the
+notes between layers; however, the algorithm adds additional noise,
 because \code{diff} compares the MEI rather than the hierarchical
 structure encoded by the MEI.  As a result, the total edit distance is
 10.  If practitioners are interested in understanding change relative
@@ -351,7 +341,7 @@ within the music community.
   applied to MEI.  A total edit distance of 10 results from updating
   the notes in layer 1 and layer 2 (cost of 6), as well as updating
   \code{layer} tags (cost of 4).  Nearly half of the edit distance is
-  'noise' from deleting lines with \code{layer} tags, an artifact of
+  `noise' from deleting lines with \code{layer} tags, an artifact of
   comparing versions in terms of lines instead of MEI elements.}
 \label{fig:lcs-diff}
 \end{figure}
@@ -367,17 +357,16 @@ the hierarchical structure of the MEI text.}
 \end{figure}
 
 In contrast, Figure~\ref{fig:hierarchical-diff} illustrates an edit
-script that maps one version of an MEI-encoded score to another
-in terms of MEI's hierarchical object model.  As with the LCS
+script that maps one version of the above MEI-encoded score into another
+in terms of MEI's hierarchical object model (Zhang and Shasha algorithm).  As with the LCS
 algorithm, the tree-based approach successfully captures the need to
-switch the notes in layer 1 and layer 2.  Unlike the LCS algorithm,
-however, the edit distance between individual subtrees has also been
-summarized.  This can be helpful for interpretation as subtrees closer
+exchange the notes between layers; however, unlike the LCS algorithm, the edit distance between individual subtrees has also been
+summarized.  This can be helpful for interpretation, as subtrees closer
 to the root represent higher-level constructs within MEI, like voices and staves.  
 As such, practitioners can interpret the comparison of the music at multiple levels 
 of abstraction ranging from low-level notes (six \code{notes}, each with an edit cost of 1) 
-to higher-level layers (two \code{layers}, each with an edit cost of 3) and staffs (one \code{staff}, 
-with an edit cost of 6).
+to higher-level layers (two \code{layers}, each with an edit cost of 3) and staves (one \code{staff}, 
+with an edit cost of 6). Most notably, the tree-based element-by-element comparison reduces the edit distance to almost half of that of the LCS algorithm: the edit distance has been reduced to 6, from LCS's 10, most of which was noise from deleting lines with `layer' tags (an artifact of line-based comparison).
 
 % Jeffrey, please see p. 121 of my thesis for citations
 %  What is the related work for this approach in general and
@@ -385,15 +374,15 @@ with an edit cost of 6).
 
 
 \section{Conclusions}
-The recently emerged potentials of online collaborative music applications illustrate several ways a robust hierarchic diff algorithm for music can enable newly collaborative musicology, composition, and music education through document utilities \cite{Martin:2015pb,McCulloch:2015pd,Flat:aa,Baca:2015xr}.
+The recently emerged potentials of online, collaborative music applications illustrate several ways that a robust, hierarchic diff algorithm for music can enable newly collaborative musicology, composition, and music education through document utilities \cite{Martin:2015pb,McCulloch:2015pd,Flat:aa,Baca:2015xr}.
 Yet the commercial presentation of widely used digital engraving tools still conflates the act of sharing with the act of collaboration,
 although these remain distinct from each other.
 As a recent advertisement for the Sibelius engraving program exhorts,
-``Collaborate more easily with others and distribute your compositions for the world to hear.
+`Collaborate more easily with others and distribute your compositions for the world to hear.
 Share scores through email, upload and publish them as sheet music on ScoreExchange.com,
-and even share your composition as a video or audio file on YouTube, Facebook, and SoundCloud'' \cite{Avid:to}.
+and even share your composition as a video or audio file on YouTube, Facebook, and SoundCloud' \cite{Avid:to}.
 While file exchange between music authors remains crucial for musical creativity and collaboration beyond notation,
-it is time for engraving software to embrace the potentials of genuinely collaborative music document editing interfaces. But distributed collaboration on complex symbolic representations requires robust, intuitive version control algorithms and interfaces, and designers must reassess the task of music representation in light of the need for hierarchic diff. The superior performance of the Zhang and Shasha algorithm shown here suggests that purely tree-based representations, such as MEI, should be adopted for collaborative music software systems, rather than alternative representations that combine tree-based and non-tree-based models inconsistently.
+it is time for engraving software to embrace the potentials of genuinely collaborative music document editing interfaces. But distributed music document collaboration requires robust, intuitive version control algorithms and interfaces, and designers must reassess the task of music representation in light of the need for hierarchic diff. The superior performance of the Zhang and Shasha algorithm shown here suggests that purely tree-based representations, such as MEI, should be adopted for collaborative music software systems.
 
 %
 \begin{acknowledgments}
