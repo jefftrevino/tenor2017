@@ -155,7 +155,7 @@ appending tree nodes---to derive a minimal edit sequence, known as an
 edit script, and we compare the performance of the widely used Longest
 Common Subsequence algorithm against our approach. We conclude by summarizing implications for the design of collaborative music document software systems.
 \end{abstract}
-%
+%s
 
 \section{Introduction}\label{sec:introduction}
 \subsection{Collaborative Document Creation Requires Diff Algorithms}
@@ -189,13 +189,13 @@ Second, the manner in which one defines document similarity may change
 depending upon the task at hand.  A poet may get along fine comparing
 texts in terms of lines, which reflect part of the structure of the
 text.  A musician, however, may want to compare documents in terms of
-additional information that a line-based approach discards.
-Other communities present similar demands: scholars may want
+additional information that a line-based approach discards. Our poet, after all, may require a stanza-based representation.
+Other communities present similarly various demands: scholars may want
 to analyze and compare texts relative to other structures, such as
 paragraphs or sections.
 
 \subsection{Collaborative Music Information Requires a Hierarchic Diff}
-As alluded to above, these problems are of specific importance to version control for collaborative music document editing, both in terms of usability as well as how one may want
+These problems are of specific importance to version control for collaborative music document editing, both in terms of usability as well as how one may want
 to define `meaning' and `similarity' in musical information.  First,
 the `noisy diff' problem---in reporting differences that are not
 relevant to musicians---creates a usability problem.  Although
@@ -218,7 +218,7 @@ to entities with certain properties: for example, a musician may want
 to compare two versions of a score in terms of pitch class alone, or
 of higher-level features like phrase structure. Moreover, a musician
 may want to filter a score to compare two versions of only a single
-instrument's staff, or other musical abstractions. For any of this to be possible, diff algorithms must compare edits to tree-based document elements, rather than document lines or characters.
+instrument's staff, or other musical abstractions. For any of this to be possible, diff algorithms must compare edits to tree-based document elements, rather than to document lines or characters.
 
 \subsection{Relevant Precedents in the Music and Computer Science Literatures}
 From the perspective of computer science, our proposed approach leverages previous work from other domains in both
@@ -244,7 +244,7 @@ algorithm, as implemented within the \texttt{XUDiff} tool
 \cite{Weaver:2013sl}.  The edit distance between two trees is the
 minimum number of edit operations necessary to transform one tree into
 another.  The edit operations we consider include deleting, changing, and appending tree nodes.  As before, a sequence of edit operations
-between two trees is called an \emph{edit script}.
+between two trees is called an \emph{edit script} and the total number of edits the \emph{edit distance}.
 
 
 
@@ -280,7 +280,9 @@ While Common Western Notation displays only a change of stem
 direction, a tree-based, hierarchic representation of this musical
 information must alter both the labeling and succession of elements.
 In the MEI XML representation of a music document, the voice-switch
-example may be encoded in the following way:
+example may be encoded in the following way: 
+
+\break
 
 
 \begin{verbatim}
